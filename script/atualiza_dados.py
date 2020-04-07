@@ -11,19 +11,19 @@ def baixar_arquivo(url, endereco):
     else:
         resposta.raise_for_status()
 
+pasta = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/att.csv"
 link = 'https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8SgQYS2ptm/1f2e9efc2bdd487d4f3b693467aeb925_Download_COVID19_20200406.csv'
-baixar_arquivo(link,"C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/att.csv")
+baixar_arquivo(link,pasta)
         
-df = pd.read_csv("C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/att.csv",header = 0, sep = ";")
+df = pd.read_csv(pasta,header = 0, sep = ";")
 data = df.data
-path_out = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/DADOS/"
+path_out = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/data/data_mensured/"
 
 nome_estado = 'estado'
 A=pd.pivot_table(df, values = 'casosNovos', 
                  columns = [nome_estado],
                  aggfunc=np.sum)
 estados = A.columns
-
 
 length = len(df)-1
 
