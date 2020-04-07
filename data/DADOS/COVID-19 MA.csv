@@ -1,0 +1,17 @@
+regiao;estado;DateRep;Cases;cum-Cases;Deaths;cum-Deaths
+Nordeste;MA;21/03/2020;1;1;0;0
+Nordeste;MA;22/03/2020;1;2;0;0
+Nordeste;MA;23/03/2020;0;2;0;0
+Nordeste;MA;24/03/2020;6;8;0;0
+Nordeste;MA;25/03/2020;0;8;0;0
+Nordeste;MA;26/03/2020;2;10;0;0
+Nordeste;MA;27/03/2020;3;13;0;0
+Nordeste;MA;28/03/2020;1;14;0;0
+Nordeste;MA;29/03/2020;2;16;0;0
+Nordeste;MA;30/03/2020;7;23;1;1
+Nordeste;MA;31/03/2020;8;31;0;1
+Nordeste;MA;01/04/2020;21;52;0;1
+Nordeste;MA;02/04/2020;19;71;0;1
+Nordeste;MA;03/04/2020;10;81;0;1
+Nordeste;MA;04/04/2020;7;88;0;1
+Nordeste;MA;05/04/2020;8;96;1;2

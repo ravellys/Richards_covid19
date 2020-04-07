@@ -1,0 +1,16 @@
+regiao;estado;DateRep;Cases;cum-Cases;Deaths;cum-Deaths
+Norte;RR;22/03/2020;2;2;0;0
+Norte;RR;23/03/2020;0;2;0;0
+Norte;RR;24/03/2020;0;2;0;0
+Norte;RR;25/03/2020;6;8;0;0
+Norte;RR;26/03/2020;0;8;0;0
+Norte;RR;27/03/2020;2;10;0;0
+Norte;RR;28/03/2020;2;12;0;0
+Norte;RR;29/03/2020;4;16;0;0
+Norte;RR;30/03/2020;0;16;0;0
+Norte;RR;31/03/2020;0;16;0;0
+Norte;RR;01/04/2020;6;22;0;0
+Norte;RR;02/04/2020;4;26;0;0
+Norte;RR;03/04/2020;4;30;0;0
+Norte;RR;04/04/2020;7;37;1;1
+Norte;RR;05/04/2020;5;42;0;1
