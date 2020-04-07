@@ -237,10 +237,6 @@ estados = np.array(estados)
 df_R = pd.DataFrame(R, columns = ['r','p','K','alfa','NSE'])
 df_R["Estado"] = estados
 
-
-atributo = 'r'
-title_name = 'Growth rate at the early stage'
-
 def bar_plt(atributo, title_name,df_R,logscale):
     fig, ax = plt.subplots(1, 1)
     df_R = df_R.sort_values(by=[atributo])
