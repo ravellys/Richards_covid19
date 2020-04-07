@@ -14,12 +14,16 @@ def baixar_arquivo(url, endereco):
 pasta = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/att.csv"
 link = 'https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8SgQYS2ptm/1f2e9efc2bdd487d4f3b693467aeb925_Download_COVID19_20200406.csv'
 baixar_arquivo(link,pasta)
-        
+
+pasta = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/att_1.csv"
+ 
+nome_estado = 'sigla'
+nome_data = 'date'
+    
 df = pd.read_csv(pasta,header = 0, sep = ";")
-data = df.data
+data = df[nome_data]
 path_out = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/data/data_mensured/"
 
-nome_estado = 'estado'
 A=pd.pivot_table(df, values = 'casosNovos', 
                  columns = [nome_estado],
                  aggfunc=np.sum)
@@ -27,7 +31,6 @@ estados = A.columns
 
 length = len(df)-1
 
-nome_data = 'data'
 day_0_str=df[nome_data][0][-4:]+'-'+df[nome_data][0][3:5]+'-'+df[nome_data][0][:2]
 day_last_str=df[nome_data][length][-4:]+'-'+df[nome_data][length][3:5]+'-'+df[nome_data][length][:2]
 
@@ -48,7 +51,7 @@ for i in range(27):
     
     df_estado =df_estado[f_case:]
     
-    s_e = df_estado.estado.values[0]
+    s_e = df_estado[nome_estado].values[0]
     
     df_estado.columns = ['regiao','estado',	'DateRep', 'Cases','cum-Cases','Deaths','cum-Deaths']
     df_estado.to_csv(path_out+ "COVID-19 "+ s_e + ".csv", sep = ";",index = False)
