@@ -43,7 +43,7 @@ def Sensitivity(mypath,FILE,pop):
             'names': ['r', 'p', 'K','alfa'],
             'bounds': [[0.001, 50],
                        [0., 1.0],
-                       [1, np.log10(pop*10**6)],
+                       [np.log10(0.001*pop*10**6), np.log10(pop*10**6)],
                        [-6,2]]
             }
 
@@ -166,19 +166,11 @@ def Ajust_SUCQ(FILE,pop,extrapolação,day_0,variavel,pasta):
     cumdata_cases = cumdata_covid['Cases'].values[t0:]
     days_mens = np.linspace(1,len(cumdata_cases),len(cumdata_cases))
 
-#    N = pop*10**6
-#
-#    p0 = [4,1,0.8*N/10 ,0.001,cumdata_cases[0]]
-#       
-#    binf = [0.001,0,0,0,cumdata_cases[0]-10**-9]
-#    bsup = [40,1,N,100,cumdata_cases[0]+10**-9]
     p0,bsup,binf = bounds(FILE)
     p0.append(cumdata_cases[0])
     bsup.append(cumdata_cases[0]+10**-9)
     binf.append(cumdata_cases[0]-10**-9)
 
-#    popt = ajust_curvefit(days_mens,cumdata_cases,p0,bsup,binf)
-#    p0 = popt
     popt = min_minimize(cumdata_cases,C,p0,days_mens,bsup,binf)
     r,p,K,alfa,Co = popt 
        
@@ -198,7 +190,7 @@ def Ajust_SUCQ(FILE,pop,extrapolação,day_0,variavel,pasta):
     solution = C(days_mens, r, p, K, alfa,Co)
     date_future = np.array(date[0], dtype=np.datetime64)+ np.arange(len(date)+extrapolação)
     saída = pd.DataFrame(solution, columns=["Cases"])
-    saída["date"] = pd.DataFrame(solution, columns=["Cases"])
+    saída["date"] = date_future
     path_out = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/data/data_simulated"      
     saída.to_csv(path_out+"/"+FILE,sep=";")
 
