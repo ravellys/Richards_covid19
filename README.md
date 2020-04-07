@@ -1,4 +1,4 @@
-# modelagem-COVID-19
+# Modelagem do COVID-19 no Brasil
 Utilização do modelo generalizado de Richards para modelar os casos do COVID-19
 
 ## Modelo Generalizado de Richards
@@ -7,7 +7,7 @@ Utilização do modelo generalizado de Richards para modelar os casos do COVID-1
 
 ## Intervalo dos Parâmetros
 
-### Parâmetros ajustados
+## Parâmetros ajustados
 
 ### Taxa de Crescimento Inicial (r)
 ![Image of EDOSUCQ](https://github.com/ravellys/Richards_covid19/blob/master/imagens/r_barplot.png)
