@@ -208,14 +208,14 @@ população = np.array(população)
 mypath = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/data/data_mensured"
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
-for i in onlyfiles:
-    FILE = i
-    for i in população:
-        if i[0] == FILE[9:-4]:
-            pop = float(i[1])
-            
-    Sensitivity(mypath,FILE,pop)
-import mensured data
+#for i in onlyfiles:
+#    FILE = i
+#    for i in população:
+#        if i[0] == FILE[9:-4]:
+#            pop = float(i[1])
+#            
+#    Sensitivity(mypath,FILE,pop)
+
 extrapolação = 365
 day_0 = '2020-02-26'
 variavel = 'Cases' 
