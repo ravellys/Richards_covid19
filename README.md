@@ -22,11 +22,11 @@ Utilização do modelo generalizado de Richards para modelar os casos do COVID-1
 ![Image of EDOSUCQ](https://github.com/ravellys/Richards_covid19/blob/master/imagens/K_barplot.png)
 
 ## Previsão do número total de casos em 7 dias
-![Image of EDOSUCQ](https://github.com/ravellys/Richards_covid19/blob/master/imagens/cum_cases/COVID-19%20Brasil.png)
+![Image of EDOSUCQ](https://github.com/ravellys/Richards_covid19/blob/master/imagens/cum_cases/COVID-19%20Brazil.png)
 ![Image of EDOSUCQ](https://github.com/ravellys/Richards_covid19/blob/master/imagens/cases_7d_barplot.png)
 
 ## Intervalo de dias entre o ínicio e o pico da epidemia
-![Image of EDOSUCQ](https://github.com/ravellys/Richards_covid19/blob/master/imagens/daily_cases/COVID-19%20Brasil.png)
+![Image of EDOSUCQ](https://github.com/ravellys/Richards_covid19/blob/master/imagens/cum_cases/COVID-19%20Brazil.png)
 ![Image of EDOSUCQ](https://github.com/ravellys/Richards_covid19/blob/master/imagens/diamax_barplot.png)
 
 ## Número máximo de casos
