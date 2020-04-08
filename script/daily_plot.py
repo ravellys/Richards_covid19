@@ -49,8 +49,8 @@ for i in onlyfiles:
             pos_max = i
     max_day = df_plot["datetime"][pos_max]
     print(max_day)
-    
-    inf.append([estado[9:-4], max_cases, pos_max, max_day])
+    if pos_max < i:
+        inf.append([estado[9:-4], max_cases, pos_max, max_day])
     
     fig,ax = plt.subplots(1, 1)
     figure = df_plot.plot(ax =ax,kind = "line", x = "datetime", y = estado[9:-4],
@@ -86,7 +86,7 @@ def bar_plt(atributo, title_name,df,logscale):
     for p in ax.patches:
         b = p.get_bbox()
         val = format_func(b.y1 + b.y0,1)        
-        ax.annotate(val, ((b.x0 + b.x1)/2, b.y1 +0.25/100), fontsize = 14,ha='center', va='bottom',rotation = 90)
+        ax.annotate(val, ((b.x0 + b.x1)/2, b.y1 + 0.25/100), fontsize = 14,ha='center', va='top',rotation = 90)
 
     plt.show()
     path_out ="C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/imagens/"
