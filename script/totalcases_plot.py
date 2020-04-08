@@ -62,9 +62,9 @@ for i in onlyfiles:
     
     inf.append([estado[9:-4],max_cases])
 
-    figure = df_plot.plot(ax =ax,kind = "line", x = "datetime", y = estado[9:-4],logy = True, legend = None,
+    figure = df_plot.plot(ax =ax,kind = "line", x = "datetime", y = estado[9:-4], legend = None,
                              grid = True,rot = 90,figsize= (10,8))
-    figure2 = df_plot2.plot(ax =ax,kind = "scatter", x = "datetime", y = estado[9:-4],logy = True,
+    figure2 = df_plot2.plot(ax =ax,kind = "scatter", x = "datetime", y = estado[9:-4],
                              color = 'black',grid = True,rot = 90,figsize= (10,8))
     
     figure.yaxis.set_major_formatter(FuncFormatter(format_func))
@@ -76,7 +76,7 @@ for i in onlyfiles:
     figure.set_title(estado[9:-4], family = "Serif", fontsize = 18)
     figure.set_ylabel("Total Cases", family = "Serif", fontsize = 16)
     figure.set_xlabel(" ")
-    
+    plt.show()
     fig.savefig(path_out + estado[:-4]+'.png', dpi = 300,bbox_inches='tight',transparent = True)
     
 #    cont = cont+1
@@ -109,7 +109,7 @@ def bar_plt(atributo, title_name,df,logscale):
     for p in ax.patches:
         b = p.get_bbox()
         val = format_func(b.y1 + b.y0,1)        
-        ax.annotate(val, ((b.x0 + b.x1)/2, b.y1 +0.25/100), fontsize = 14,ha='center', va='bottom',rotation = 90)
+        ax.annotate(val, ((b.x0 + b.x1)/2, b.y1 ), fontsize = 14,ha='center', va='top',rotation = 90)
 
     plt.show()
     path_out ="C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/imagens/"

@@ -43,11 +43,11 @@ def Sensitivity(mypath,FILE,pop):
             'names': ['r', 'p', 'K','alfa'],
             'bounds': [[0.001, 50],
                        [0., 1.0],
-                       [np.log10(0.01*pop*10**6), np.log10(pop*10**6)],
+                       [np.log10(0.01*pop*10**6), np.log10(.5*pop*10**6)],
                        [-6,2]]
             }
 
-    nsamples = 500
+    nsamples = 5000
     param_values = saltelli.sample(problem,nsamples)
 
     Y = []
@@ -66,7 +66,7 @@ def Sensitivity(mypath,FILE,pop):
             NSE = NSE
         else:
                 NSE = -1000000000
-        if NSE >= 0.0:
+        if NSE >= 0.75:
             W.append([r, p, K, alfa,NSE])
         
         Y.append([r, p, K, alfa,NSE])
@@ -139,6 +139,11 @@ from scipy.optimize import minimize
 def object_minimize(x,t,cumdata_cases):
  
     cum_cases = odeint(f,x[4],t, args =(x[0],x[1],x[2],x[3]))
+    
+    
+    #return sum(abs(cumdata_cases-cum_cases.ravel()))
+    #return sum((np.log10(cumdata_cases)-np.log10(cum_cases.ravel()))**2)
+
     return sum((cumdata_cases-cum_cases.ravel())**2)
 
 def min_minimize(cumdata_cases,C,p0,t,bsup,binf):
@@ -203,14 +208,14 @@ população = np.array(população)
 mypath = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/data/data_mensured"
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
-#for i in onlyfiles:
-#    FILE = i
-#    for i in população:
-#        if i[0] == FILE[9:-4]:
-#            pop = float(i[1])
-#            
-#    Sensitivity(mypath,FILE,pop)
-#import mensured data
+for i in onlyfiles:
+    FILE = i
+    for i in população:
+        if i[0] == FILE[9:-4]:
+            pop = float(i[1])
+            
+    Sensitivity(mypath,FILE,pop)
+import mensured data
 extrapolação = 365
 day_0 = '2020-02-26'
 variavel = 'Cases' 
@@ -242,7 +247,7 @@ def bar_plt(atributo, title_name,df_R,logscale):
     for p in ax.patches:
         b = p.get_bbox()
         val = format_func(b.y1 + b.y0,1)        
-        ax.annotate(val, ((b.x0 + b.x1)/2, b.y1 +0.25/100), fontsize = 14,ha='center', va='bottom',rotation = 90)
+        ax.annotate(val, ((b.x0 + b.x1)/2, b.y1 +0.25/100), fontsize = 14,ha='center', va='top',rotation = 90)
 
     plt.show()
     path_out ="C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/imagens/"
