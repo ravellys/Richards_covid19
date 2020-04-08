@@ -72,5 +72,5 @@ while(df_brasil["casosAcumulados"].values[f_case]==0):
 
 df_brasil = df_brasil[f_case:] 
 df_brasil.columns = ['cum-Cases','Cases','cum-Deaths','Deaths','DateRep']
-df_brasil.to_csv(path_out+ "COVID-19 "+ "Brasil" + ".csv", sep = ";",index = False)
+df_brasil.to_csv(path_out+ "COVID-19 "+ "Brazil" + ".csv", sep = ";",index = False)
    
