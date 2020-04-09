@@ -44,7 +44,7 @@ def Sensitivity(mypath,FILE,pop):
             'bounds': [[0.001, 50],
                        [0., 1.0],
                        [np.log10(0.01*pop*10**6), np.log10(.5*pop*10**6)],
-                       [-6,2]]
+                       [-10,1]]
             }
 
     nsamples = 5000
@@ -202,7 +202,7 @@ def Ajust_SUCQ(FILE,pop,extrapolação,day_0,variavel,pasta):
     return [r,p,K,alfa,NSE]
 
 #import mensured data
-população = [["Espanha",46.72],["Itália",60.43],["SP",45.92],["MG",21.17],["RJ",17.26],["BA",14.87],["PR",11.43],["RS",11.37],["PE",9.6],["CE",9.13],["Pará",8.6],["SC",7.16],["MA",7.08],["GO",7.02],["AM", 4.14],["ES",4.02],["PB",4.02],["RN",3.51],["MT",3.49],["AL", 3.4],["PI",3.3],["DF",3.1],["MS",2.8],["SE",2.3],["RO",1.78],["TO",1.6],["AC",0.9],["AM",0.85],["RR",0.61],["Brazil",210.2]]
+população = [["Espanha",46.72],["Itália",60.43],["SP",45.92],["MG",21.17],["RJ",17.26],["BA",14.87],["PR",11.43],["RS",11.37],["PE",9.6],["CE",9.13],["PA",8.6],["SC",7.16],["MA",7.08],["GO",7.02],["AM", 4.14],["ES",4.02],["PB",4.02],["RN",3.51],["MT",3.49],["AL", 3.4],["PI",3.3],["DF",3.1],["MS",2.8],["SE",2.3],["RO",1.78],["TO",1.6],["AC",0.9],["AP",0.85],["RR",0.61],["Brazil",210.2]]
 população = np.array(população)
 
 mypath = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/data/data_mensured"
