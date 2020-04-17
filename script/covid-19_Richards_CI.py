@@ -151,17 +151,22 @@ def min_minimize(cumdata_cases,C,p0,t,bsup,binf):
     res = minimize(object_minimize, p0, args = (t,cumdata_cases), bounds = bnds, method='TNC')
     return res.x
 
-def Ajust_SUCQ(FILE,pop,extrapolação,day_0,variavel,pasta):    
+def Ajust_(FILE,pop,extrapolação,day_0,variavel,pasta):    
         
     data_covid = pd.read_csv(pasta+"/"+FILE, header = 0, sep = ";")
     data_covid = data_covid[['DateRep',variavel]]
-    day_0_str = data_covid['DateRep'][0][-4:]+'-'+data_covid['DateRep'][0][3:5]+'-'+data_covid['DateRep'][0][:2]
+    
+    nome_data = 'DateRep'
+    df = data_covid
+    day_0_str=df[nome_data][0][:4]+'-'+df[nome_data][0][5:7]+'-'+df[nome_data][0][-2:]
+
+    #day_0_str = data_covid['DateRep'][0][-4:]+'-'+data_covid['DateRep'][0][3:5]+'-'+data_covid['DateRep'][0][:2]
     date = np.array(day_0_str, dtype=np.datetime64)+ np.arange(len(data_covid))
     
     if date[0]>=np.array(day_0, dtype=np.datetime64):
         t0 = 0
     else:
-        dif_dias =np.array('2020-03-18', dtype=np.datetime64)-date[0]
+        dif_dias =np.array(day_0, dtype=np.datetime64)-date[0]
         t0 = dif_dias.astype(int)
     
     date= date[t0:] 
@@ -181,7 +186,10 @@ def Ajust_SUCQ(FILE,pop,extrapolação,day_0,variavel,pasta):
        
     solution = C(days_mens, r, p, K, alfa,Co)
     
-    NSE = hy.nse(cumdata_cases,solution)
+    NSE = hy.nse(solution,cumdata_cases)
+    RMSE = hy.rmse(solution,cumdata_cases)
+    MARE = hy.mare(solution,cumdata_cases)
+    
     print(FILE[9:-4])
     print("r = %f " % (r))
     print("p = %f " % (p))
@@ -199,7 +207,7 @@ def Ajust_SUCQ(FILE,pop,extrapolação,day_0,variavel,pasta):
     path_out = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/data/data_simulated"      
     saída.to_csv(path_out+"/"+FILE,sep=";")
 
-    return [r,p,K,alfa,NSE]
+    return [r,p,K,alfa,NSE,RMSE,MARE]
 
 #import mensured data
 população = [["Espanha",46.72],["Itália",60.43],["SP",45.92],["MG",21.17],["RJ",17.26],["BA",14.87],["PR",11.43],["RS",11.37],["PE",9.6],["CE",9.13],["PA",8.6],["SC",7.16],["MA",7.08],["GO",7.02],["AM", 4.14],["ES",4.02],["PB",4.02],["RN",3.51],["MT",3.49],["AL", 3.4],["PI",3.3],["DF",3.1],["MS",2.8],["SE",2.3],["RO",1.78],["TO",1.6],["AC",0.9],["AP",0.85],["RR",0.61],["Brazil",210.2]]
@@ -228,11 +236,13 @@ for i in onlyfiles:
         if i[0] == FILE[9:-4]:
             pop = float(i[1])
     estados.append(FILE[9:-4])
-    R.append(Ajust_SUCQ(FILE,pop,extrapolação,day_0,variavel,pasta = mypath))       
+    R.append(Ajust_(FILE,pop,extrapolação,day_0,variavel,pasta = mypath))       
 R = np.array(R)
 estados = np.array(estados)
-df_R = pd.DataFrame(R, columns = ['r','p','K','alfa','NSE'])
+df_R = pd.DataFrame(R, columns = ['r','p','K','alfa','NSE','RMSE','MARE'])
 df_R["Estado"] = estados
+path_out ="C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/"
+df_R.to_csv(path_out+'/metrics.csv',sep=";")
 
 def bar_plt(atributo, title_name,df_R,logscale):
     fig, ax = plt.subplots(1, 1)

@@ -64,7 +64,7 @@ for i in onlyfiles:
     figure.set_title(estado[9:-4], family = "Serif", fontsize = 18)
     figure.set_ylabel("Daily Cases", family = "Serif", fontsize = 16)
     figure.set_xlabel(" ")
-    
+    plt.show()
     fig.savefig(path_out + estado[:-4]+'.png', dpi = 300,bbox_inches='tight',transparent = True)
 
 inf = np.array(inf)

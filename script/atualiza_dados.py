@@ -11,14 +11,15 @@ def baixar_arquivo(url, endereco):
     else:
         resposta.raise_for_status()
 
-pasta = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/att.csv"
-link = 'https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8SgQYS2ptm/1f2e9efc2bdd487d4f3b693467aeb925_Download_COVID19_20200406.csv'
-baixar_arquivo(link,pasta)
 
-pasta = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/att_1.csv"
- 
-nome_estado = 'sigla'
-nome_data = 'date'
+link = 'https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8SgQYS2ptm/9968e11f13dd30c9831e3b1e8da3eb74_Download_COVID19_20200417.csv'
+pasta = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/att.csv"
+#baixar_arquivo(link,pasta)
+
+#pasta = "C:/Users/ravel/OneDrive/Área de Trabalho/DataScientist/sklearn/COVID-19/CasosPorEstado/Richards_covid19/att.csv"
+pasta ='C:/Users/ravel/Downloads/9968e11f13dd30c9831e3b1e8da3eb74_Download_COVID19_20200417 (1).csv' 
+nome_data = 'data'
+nome_estado = 'estado'
     
 df = pd.read_csv(pasta,header = 0, sep = ";")
 data = df[nome_data]
@@ -31,8 +32,11 @@ estados = A.columns
 
 length = len(df)-1
 
-day_0_str=df[nome_data][0][-4:]+'-'+df[nome_data][0][3:5]+'-'+df[nome_data][0][:2]
-day_last_str=df[nome_data][length][-4:]+'-'+df[nome_data][length][3:5]+'-'+df[nome_data][length][:2]
+
+day_0_str=df[nome_data][0][:4]+'-'+df[nome_data][0][5:7]+'-'+df[nome_data][0][-2:]
+day_last_str=df[nome_data][length][:4]+'-'+df[nome_data][length][5:7]+'-'+df[nome_data][length][-2:]
+#day_0_str=df[nome_data][0][-4:]+'-'+df[nome_data][0][3:5]+'-'+df[nome_data][0][:2]
+#day_last_str=df[nome_data][length][-4:]+'-'+df[nome_data][length][3:5]+'-'+df[nome_data][length][:2]
 
 day_0 = np.array(day_0_str, dtype=np.datetime64)
 day_last = np.array(day_last_str, dtype=np.datetime64)
